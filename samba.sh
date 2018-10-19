@@ -88,7 +88,7 @@ recycle() { local file=/etc/samba/smb.conf
 # Arguments:
 #   share) share name
 #   path) path to share
-#   browsable) 'yes' or 'no'
+#   browseable) 'yes' or 'no'
 #   readonly) 'yes' or 'no'
 #   guest) 'yes' or 'no'
 #   users) list of allowed users
@@ -96,13 +96,13 @@ recycle() { local file=/etc/samba/smb.conf
 #   writelist) list of users that can write to a RO share
 #   comment) description of share
 # Return: result
-share() { local share="$1" path="$2" browsable="${3:-yes}" ro="${4:-yes}" \
+share() { local share="$1" path="$2" browseable="${3:-yes}" ro="${4:-yes}" \
                 guest="${5:-yes}" users="${6:-""}" admins="${7:-""}" \
                 writelist="${8:-""}" comment="${9:-""}" file=/etc/samba/smb.conf
     sed -i "/\\[$share\\]/,/^\$/d" $file
     echo "[$share]" >>$file
     echo "   path = $path" >>$file
-    echo "   browsable = $browsable" >>$file
+    echo "   browseable = $browseable" >>$file
     echo "   read only = $ro" >>$file
     echo "   guest ok = $guest" >>$file
     echo -n "   veto files = /._*/.apdisk/.AppleDouble/.DS_Store/" >>$file
